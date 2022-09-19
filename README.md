@@ -1,6 +1,6 @@
 # OSRS_Investment_Project
 Scrapes and analyzes data from Old School Runescape items to make investment predictions
-\
+
 
 
 Summary:
@@ -21,8 +21,10 @@ Python) in conjunction with softwares under the Amazon Web Services (AWS) Free T
 Some code to help you get a similar project up and running is included
 in the Getting_Started file. It includes the link for getting started 
 with Airflow and basic instructions for setting up an EC2 instance for
-web scraping. 
-\ 
+web scraping.
+
+ 
+
 
 Architecture:
 
@@ -157,7 +159,7 @@ daily volume has increased for past three days T/F
 % price increase from 3 days ago
 
 % price increase from 1 week ago
-\
+
 
 Data Summary Table
 <img width="1085" alt="data_summary" src="https://user-images.githubusercontent.com/113870646/190941733-d7adcf5e-3266-4ffb-9bd0-83cda5a52d6a.png">
