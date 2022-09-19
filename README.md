@@ -106,14 +106,16 @@ graph's source code and parses it for data.
 
 The extraction script writes raw data incrementally to a local csv file. When
 extraction is complete, the csv file is uploaded to an S3 bucket. Here is an example of two weeks' worth
-of price and volume data.
+of price and volume data scraped at once.
 \
 \
 Raw Data
 <img width="1227" alt="raw_data" src="https://user-images.githubusercontent.com/113870646/190941942-45a3ce65-0efe-4395-844a-1166d7f9b9f3.png">
 
 
+After this big initial scrape, subsequent runs only need to record today's data
 
+<img width="337" alt="raw_today" src="https://user-images.githubusercontent.com/113870646/190943932-da16ba2f-2744-4375-9904-5ebc0d964534.png">
 
 
 Transformation:
