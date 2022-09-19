@@ -5,7 +5,7 @@ Scrapes and analyzes data from Old School Runescape items to make investment pre
 
 Summary:
 
-Old School Runescape (osrs) is a medieval themed online game that launched in
+Old School Runescape (OSRS) is a medieval themed online game that launched in
 2013. It hosts millions of users, and has a complex marketplace where items 
 are bought and sold for in-game currency. The marketplace is named the 
 Grand Exchange, and it automates trades for almost 4000 individual game items.
