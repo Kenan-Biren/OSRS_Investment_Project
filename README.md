@@ -1,5 +1,6 @@
 # OSRS_Investment_Project
 Scrapes and analyzes data from Old School Runescape items to make investment predictions
+\
 
 
 Summary:
@@ -21,11 +22,12 @@ Some code to help you get a similar project up and running is included
 in the Getting_Started file. It includes the link for getting started 
 with Airflow and basic instructions for setting up an EC2 instance for
 web scraping. 
-
+\ 
 
 Architecture:
 
 
+<img width="1383" alt="Flowchart" src="https://user-images.githubusercontent.com/113870646/190942097-95395517-88b0-4cfc-98ef-a21531f05537.png">
 
 
 
@@ -39,7 +41,7 @@ the analytical queries is sent out via email.
 
  
 
-Task Flow: 
+Airflow Tasks: 
 
 Task 1: Start EC2 instance if it is not started already
 
@@ -84,23 +86,29 @@ Unfortunately, there is no free website that features a complete item list
 as well as historical data for each item. So in this case, the complete
 item list is extracted from the wiki database (1), and each item is individually
 searched in the Runescape item database (2) to access its historical data. 
-
+\
+\
 Example of wiki database that contains complete item list
 
--pic
+<img width="1440" alt="osrs_wiki_table_example" src="https://user-images.githubusercontent.com/113870646/190941563-e7d00784-fda0-46fd-8ecc-97a69fd395b3.png">
 
+\
 Example of one item's historical data on the Runescape item database
 
--pic
+<img width="1015" alt="osrs_website_graph_example" src="https://user-images.githubusercontent.com/113870646/190941568-e57652c0-7e09-4368-b05e-e4f4f0d04b37.png">
+
 
 The historical data is in graph form, so the extraction script download the 
 graph's source code and parses it for data.
 
 
 The extraction script writes raw data incrementally to a local csv file. When
-extraction is complete, the csv file is uploaded to an S3 bucket. 
-
--raw data pic
+extraction is complete, the csv file is uploaded to an S3 bucket. Here is an example of two weeks' worth
+of price and volume data.
+\
+\
+Raw Data
+<img width="1227" alt="raw_data" src="https://user-images.githubusercontent.com/113870646/190941942-45a3ce65-0efe-4395-844a-1166d7f9b9f3.png">
 
 
 
@@ -112,47 +120,60 @@ Transformation:
 The csv file upload to S3 triggers an EventBridge rule that loads the csv file 
 from S3 to Redshift, then performs a series of analytical queries. 
 
-
+\
 EventBridge Rule Trigger
--eventbridge pic
+
+<img width="801" alt="eventbridge_trigger" src="https://user-images.githubusercontent.com/113870646/190941601-0673283b-d24d-492b-8410-1f015bef0fef.png">
+
+
 
 EventBridge Rule Target 
--eventbridge pic
+
+<img width="701" alt="eventbridge_target" src="https://user-images.githubusercontent.com/113870646/190941620-1234716e-6628-4d5b-831d-1508c5391d73.png">
+
 
 
 Below is a walthrough of my investment analysis. In general, this is just an 
 attempt to use historical data to weigh today's investment opportunites.
-
-
-
--data_tb pic
+\
+\
+Data Table
+<img width="1261" alt="data_tb" src="https://user-images.githubusercontent.com/113870646/190941728-a5aa0a9e-3787-45e3-8031-0e8dcd0bd844.png">
 This cleaned data table is the first layer of analysis on the raw data.
 The data table contains data on many attributes of each item, such as:
-    price has risen for past two days T/F
-    price has risen for past three days T/F 
-    daily volume has increased for past two days T/F
-    daily volume has increased for past three days T/F
-    % price increase in past day
-    % price increase from 3 days ago
-    % price increase from 1 week ago
+ 
+     
 
+price has risen for past two days T/F
 
+price has risen for past three days T/F 
 
--data summary pic
+daily volume has increased for past two days T/F
+
+daily volume has increased for past three days T/F
+
+% price increase in past day
+
+% price increase from 3 days ago
+
+% price increase from 1 week ago
+\
+
+Data Summary Table
+<img width="1085" alt="data_summary" src="https://user-images.githubusercontent.com/113870646/190941733-d7adcf5e-3266-4ffb-9bd0-83cda5a52d6a.png">
 The data summary table is the second layer of analysis. Data from the cleaned
-data table is aggregated to see if there are any insights that can be drawn.
+data table is aggregated and used to apply weights to current data.
 
 
--final output pic
+Final Output List
+\
+<img width="406" alt="final_list" src="https://user-images.githubusercontent.com/113870646/190941740-1ee7cf54-51ed-418f-9a37-3459959ada07.png">
+\
 Aggregated data from the data summary table is applied to the original item
 list and prices, creating a final item list with recent prices increases
-adjusted based on historical data. 
+adjusted based on historical data.   
 
-
-
-
-
-
+\
 Future Considerations
 
 1. The Selenium package is used to scrape web data, but it is not very efficient.
@@ -170,4 +191,4 @@ project records daily data, so the cluster must be running 24/7 or on a
 scheduled daily interval. This is not a problem with the Redshift Free Tier, 
 but that only last two months. I believe an easy way to 
 address this would be to run the cluster on a small daily scheduled interval, 
-and use an associated CloudTrail to trigger the EventBridge rule instead of S3.
+and use an associated CloudTrail to trigger the EventBridge rule instead of S3 triggering it.
