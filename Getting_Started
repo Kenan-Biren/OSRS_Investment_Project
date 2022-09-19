@@ -1,0 +1,54 @@
+Airflow
+##  A quick-start guide for Airflow is available from
+##  https://airflow.apache.org/docs/apache-airflow/stable/start/local.html
+##  It is recommended that you don't use the default SequentialExecutor and 
+##  MySQLite backend database unless your project is very basic. This 
+##  project uses LocalExecutor and MySQL as the backend, but currently
+##  would run fine with default settings.
+
+Putting Files on EC2 and Setting Up Environment:
+## Run sftp code below in local terminal to upload this folder to EC2 instance 
+## (I'm using a Mac terminal)
+
+## It is important to do this manually at least once so the EC2 instance is added
+## to your local machines list of known_hosts.
+
+## Default EC2 user is ec2-user. Replace if you are using a different user. Exclude asterisks
+sftp -i *PATH TO YOUR KEY PEM FILE* ec2-user@*PUBLIC IPv4 DNS OF YOUR INSTANCE*
+## To transfer project folder to EC2 
+put -r *PATH TO PROJECT FOLDER*
+## Optional: specify destination folder after path to project folder
+
+
+## Install Chrome on EC2 instance
+sudo curl https://intoli.com/install-google-chrome.sh | bash
+sudo mv /usr/bin/google-chrome-stable /usr/bin/google-chrome
+google-chrome --version && which google-chrome
+
+## Install Chromedriver on EC2 instance
+## Make sure to install correct Chromedriver for your version of Chrome
+cd /tmp/
+sudo wget https://chromedriver.storage.googleapis.com/105.0.5195.19/chromedriver_linux64.zip
+sudo unzip chromedriver_linux64.zip
+sudo mv chromedriver /usr/bin/chromedriver
+chromedriver --version
+
+
+## Check python3 version installed on EC2
+yum list installed | grep -i python3
+
+
+## Upgrade pip if necessary
+pip3 install pip --upgrade
+
+## Install requirements.txt
+pip3 install -r requirements.txt
+
+## Ready to run scripts on EC2
+
+cd PROJECTFOLDER;python3 script.py
+
+
+
+
+
