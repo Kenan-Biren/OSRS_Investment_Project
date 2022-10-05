@@ -100,7 +100,7 @@ Example of one item's historical data on the Runescape item database
 <img width="1015" alt="osrs_website_graph_example" src="https://user-images.githubusercontent.com/113870646/190941568-e57652c0-7e09-4368-b05e-e4f4f0d04b37.png">
 
 
-The historical data is in graph form, so the extraction script download the 
+The historical data is in graph form, so the extraction script downloads the 
 graph's source code and parses it for data.
 
 
@@ -148,19 +148,19 @@ The data table contains data on many attributes of each item, such as:
  
      
 
-price has risen for past two days T/F
+- price has risen for past two days T/F
 
-price has risen for past three days T/F 
+- price has risen for past three days T/F 
 
-daily volume has increased for past two days T/F
+- daily volume has increased for past two days T/F
 
-daily volume has increased for past three days T/F
+- daily volume has increased for past three days T/F
 
-% price increase in past day
+- % price increase in past day
 
-% price increase from 3 days ago
+- % price increase from 3 days ago
 
-% price increase from 1 week ago
+- % price increase from 1 week ago
 
 
 Data Summary Table
