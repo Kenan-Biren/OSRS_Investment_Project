@@ -182,6 +182,7 @@ Future Considerations
 
 1. The Selenium package is used to scrape web data, but it is not very efficient.
 Future versions will use Scrapy, allowing parallel execution for web scrapes.
+ - Oct. 6, 2022: First version of Scrapy crawler uploaded. Save_Links_to_CSV.py scrapes and saves links to the csv that Scrapy_spider.py reads. Scrapy uses scrapy-user-agents and scrapy-rotating-proxies packages to hide user agent and IP information (relevant settings shown in Scrapy_settings.py). After scraping each data "item" (Scrapy_items.py) from a url, Scrapy automatically processes them into the resulting csv. The big benefit is that Scrapy deploys multiple crawlers at once, and is designed to output the resulting data accurately while this happens. 
 
 2. AWS EventBridge is very simple and easy to get up and running,
 but has very limited Transformation capabilities beyond scheduling queries. 
