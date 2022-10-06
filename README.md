@@ -171,7 +171,7 @@ data table is aggregated and used to apply weights to current data.
 
 Final Output List
 \
-<img width="406" alt="final_list" src="https://user-images.githubusercontent.com/113870646/190941740-1ee7cf54-51ed-418f-9a37-3459959ada07.png">
+<img width="405" alt="final_list" src="https://user-images.githubusercontent.com/113870646/194401988-7f10c34a-3672-438d-aa09-aa9b3294bc94.png">
 \
 Aggregated data from the data summary table is applied to the original item
 list and prices, creating a final item list with recent prices increases
